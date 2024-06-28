@@ -32,5 +32,9 @@ def main ():
   radio_button= st.radio('Choose below',[x for x in range(1,3)])
   st.write('Anda Memilih',radio_button)
 
+  #slider
+  age_slider = st.slider('Berapa Usia Anda',0,100)
+  st.write('Usia Anda',age_slider)
+
 if __name__ == '__main__' :
   main()
