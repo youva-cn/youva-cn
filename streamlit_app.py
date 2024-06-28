@@ -36,5 +36,9 @@ def main ():
   age_slider = st.slider('Berapa Usia Anda',0,100)
   st.write('Usia Anda',age_slider)
 
+  #Input (Typing)
+  num_input = st.number_input('Input Berapapun')
+  st.write('Kuadrat dari {} adalah {}'.format(num_input,num_input**2))
+
 if __name__ == '__main__' :
   main()
