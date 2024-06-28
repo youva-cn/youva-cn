@@ -17,7 +17,6 @@ def main ():
   # Untuk menulis metric
   st.write('Metrics')
   st.metric(label="Temperature", value="70 °F", delta="-1.2 °F")
-
   # Menampilkan AgGrid
   st.write('Menampilkan Dataframe dengan St AgGrid')
   AgGrid(house)
