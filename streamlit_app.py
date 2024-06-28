@@ -69,16 +69,16 @@ def main ():
 
   #sidebar 
   with st.form("Data Diri"):
-     st.write("Inside the form")
-     slider_val = st.slider("Form slider")
-     checkbox_val = st.checkbox("Form checkbox")
+     st.write("Area di dalam form")
+     slider_val = st.slider("Pilih Angka")
+     checkbox_val = st.checkbox("Setuju")
 
      #Every form must have a submit button.
-     submitted = st.form_submit_button("Submit")
+     submitted = st.form_submit_button("Simpan")
      if submitted:
-         st.write("slider", slider_val, "checkbox", checkbox_val)
+         st.write("Angka dipilih", slider_val, "checkbox", checkbox_val)
 
-  st.write("Outside the form")
+  st.write("Area di luar form")
 
   # Insert containers separated into tabs:
   tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
@@ -88,30 +88,27 @@ def main ():
   # You can also use "with" notation:
   with tab1:
      st.radio("Select one:", [1, 2])
+  
+  st.line_chart(house)
  
- #Show a spinner during a process
-  with st.spinner(text="In progress"):
-    time.sleep(3)
-    st.success("Done")
+  ##Membuat sidebar
+  st.sidebar.title("Sidebar")
+  input_text = st.sidebar.text_input("Masukkan sesuatu:")
+  input_number = st.sidebar.number_input("Masukkan angka:", min_value=0, max_value=100)
 
- #Show and update progress bar
- bar = st.progress(50)
- time.sleep(3)
- bar.progress(100)
+  ###Tombol untuk memindahkan konten
+  if st.sidebar.button("Tampilkan di Mainbar"):
+     st.session_state['show_content'] = True
+  else:
+     st.session_state['show_content'] = False
 
- with st.status("Authenticating...") as s:
-    time.sleep(2)
-    st.write("Some long response.")
-    s.update(label="Response")
-
- st.balloons()
- st.snow()
- st.toast("Warming up...")
- st.error("Error message")
- st.warning("Warning message")
- st.info("Info message")
- st.success("Success message")
- st.exception(e)
+  #Menampilkan hasil di mainbar
+  st.title("Mainbar")
+  if 'show_content' in st.session_state and st.session_state['show_content']:
+     st.write(f"Teks dari sidebar: {input_text}")
+     st.write(f"Angka dari sidebar: {input_number}")
+  else:
+     st.write("Tidak ada konten untuk ditampilkan.")
 
 if __name__ == '__main__' :
   main()
